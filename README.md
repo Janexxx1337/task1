@@ -1,24 +1,30 @@
 # task
 
-## Project setup
+![interface](https://tinyurl.com/ypu99gw2)
+
+## Установка зависимостей
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Запуск
 ```
-npm run serve
+npm run dev
 ```
 
-### Compiles and minifies for production
+### Продакшн сборка
 ```
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+### Функционал
+Поиск пользователей по имени.
+Сортировка пользователей по возрасту.
+Разбивка списка пользователей на страницы для работы с большими наборами данных.
+Редактирование, предупреждение или удаление пользователей с помощью простых кнопок действий.
+Отображение времени последнего входа пользователей.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Зависимости
+Vue.js
+Ant Design Vue
+Moment.js для форматирования даты и времени.
