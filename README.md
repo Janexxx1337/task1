@@ -1,6 +1,6 @@
 # task
 
-![interface](https://tinyurl.com/ypu99gw2)
+![interface](Vite-App.png)
 
 ## Установка зависимостей
 ```
