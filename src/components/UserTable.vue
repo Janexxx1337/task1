@@ -1,7 +1,8 @@
 <template>
   <div style="max-width: 1400px; margin: auto;">
-    <a-input-search placeholder="Поиск по имени" @search="filterByName" />
-    <a-table bordered size="middle" :columns="columns" :dataSource="filteredData" :pagination="pagination"
+    <a-input-search placeholder="Поиск по имени" :value="searchQuery" @input="searchQuery = $event.target.value" />
+
+    <a-table bordered size="small" :columns="columns" :dataSource="filteredData" :pagination="pagination"
              @change="handleTableChange">
       <template #actions="{ text, record, index }">
         <button @click="editRow(index)">✏️</button>
@@ -11,13 +12,9 @@
     </a-table>
   </div>
 </template>
-
-
 <script>
-
 import moment from 'moment';
 import 'moment-timezone';
-
 
 export default {
   data() {
@@ -28,6 +25,7 @@ export default {
         age: Math.floor(Math.random() * 50) + 18,
         last_login: moment(new Date(Date.now() - Math.floor(Math.random() * 10000000000))).format('YYYY-MM-DD HH:mm:ss')
       })),
+      searchQuery: '',
       filteredData: [],
       pagination: {
         current: 1,
@@ -59,42 +57,57 @@ export default {
         {
           title: "Последний вход",
           dataIndex: "last_login",
-          key: "last_login",
+          key: "last_login"
         },
-
         {
           title: 'Действия',
           key: 'actions',
-          slots: {customRender: 'actions'},
+          slots: { customRender: 'actions' }
         }
       ]
     };
   },
+  watch: {
+    searchQuery(newQuery) {
+      this.filterByName(newQuery);  // <-- Изменение здесь
+    }
+  },
   methods: {
-    filterByName(event) {
-      const query = event.target.value.toLowerCase();
-      this.filteredData = this.users.filter(user =>
-          user.name.toLowerCase().includes(query)
-      );
+    filterByName(query) {
+      query = query.toLowerCase();
+      this.filteredData = this.users.filter(user => user.name.toLowerCase().includes(query));
+    },
+
+    inputChanged(event) {
+      console.log("Input changed:", event.target.value);
+    },
+    generalSearch(query) {
+      console.log("General search called with query:", query);
+      query = query.toLowerCase();
+      this.filteredData = this.users.filter(user => {
+        return Object.values(user).some(value =>
+            value.toString().toLowerCase().includes(query)
+        );
+      });
+      this.pagination.total = this.filteredData.length;
     },
     handleTableChange(pagination) {
       this.pagination = pagination;
+    },
+    deleteRow(index) {
+      this.users.splice(index, 1);
+      this.filteredData = [...this.users];
+    },
+    warnRow(index) {
+      // логика предупреждения
+    },
+    editRow(index) {
+      // логика редактирования
     }
-  },
-
-  deleteRow(index) {
-    this.users.splice(index, 1);
-    this.filteredData = [...this.users]; // обновляем отфильтрованные данные
   },
   created() {
     this.filteredData = this.users;
     this.pagination.total = this.users.length;
-  },
-  warnRow(index) {
-
-  },
-  editRow(index) {
-
   }
 };
 </script>
