@@ -1,29 +1,30 @@
 # task
 
-This template should help get you started developing with Vue 3 in Vite.
+![interface](Vite-App.png)
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
+## Установка зависимостей
+```
 npm install
 ```
 
-### Compile and Hot-Reload for Development
-
-```sh
+### Запуск
+```
 npm run dev
 ```
 
-### Compile and Minify for Production
-
-```sh
+### Продакшн сборка
+```
 npm run build
 ```
+
+### Функционал
+Поиск пользователей по имени.
+Сортировка пользователей по возрасту.
+Разбивка списка пользователей на страницы для работы с большими наборами данных.
+Редактирование, предупреждение или удаление пользователей с помощью простых кнопок действий.
+Отображение времени последнего входа пользователей.
+
+### Зависимости
+Vue.js
+Ant Design Vue
+Moment.js для форматирования даты и времени.
